@@ -2,11 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
+[RequireComponent(typeof(Light2D))]
 public class NaviController : MonoBehaviour
 {
+    [SerializeField]
+    private Light2D _light;
+    [SerializeField]
+    private Color _color = Color.white;
 
-    [SerializeField()]
+    [SerializeField]
     private Camera _cam;
 
     [SerializeField()]
@@ -27,9 +33,24 @@ public class NaviController : MonoBehaviour
 
     private Vector3 worldMousePos;
     private Vector2 target = Vector2.zero;
-    private Vector2 _vel = Vector2.zero; 
+    private Vector2 _vel = Vector2.zero;
+
+    [SerializeField]
+    private float _radius = 10f;
+    [SerializeField]
+    private LayerMask _signalLayer = 0;
 
     // Insertar componente de mover player
+
+
+    private void Awake()
+    {
+        _light = GetComponent<Light2D>();
+        _light.lightType = Light2D.LightType.Point;
+        _light.pointLightOuterRadius = _radius / 4f;
+        _light.color = _color;
+    }
+
 
     // Start is called before the first frame update
     private void Start()
@@ -68,11 +89,20 @@ public class NaviController : MonoBehaviour
             transform.position = Vector2.SmoothDamp(transform.position, target, ref _vel, _turboSmoothTime, _turboMaxSpeed);
     }
 
+
+    private void ProcessSignalHits(Collider2D[] hits)
+    {
+        // Code that processes signal hits goes here!
+    }
+
     
     private void SignalPos()
     {
         worldMousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
         target = worldMousePos;
         _turboing = true;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(target, _radius, _signalLayer);
+        ProcessSignalHits(hits);
     }
 }
