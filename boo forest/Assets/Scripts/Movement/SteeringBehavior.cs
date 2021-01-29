@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BasicMovement))]
+[RequireComponent(typeof(SteeringMovement))]
 public class SteeringBehavior : MonoBehaviour
 {
 
     public Camera _cam;
-    private BasicMovement _movement;
+    private SteeringMovement _movement;
 
     [SerializeField()]
     public float seekWeight = 1.0f;
+
+    [SerializeField()]
+    public float arriveWeight = 1.0f;
+
+    [HideInInspector()]
+    public Vector2 targetPosition = Vector2.zero;
 
     public Decceleration defaultDecceleration = Decceleration.normal;
 
@@ -28,7 +34,7 @@ public class SteeringBehavior : MonoBehaviour
             Debug.LogError("MISSING CAMERA");
 
         // get movement and check if it was found
-        _movement = GetComponent<BasicMovement>();
+        _movement = GetComponent<SteeringMovement>();
         if (_movement == null)
             Debug.LogError("MISSING BASIC MOVEMENT COMPONENT");
     }
@@ -36,7 +42,7 @@ public class SteeringBehavior : MonoBehaviour
     // Compute resulting Steering force
     public Vector2 Calculate()
     {
-        return Arrive((Vector2) (_cam.ScreenToWorldPoint(Input.mousePosition)));
+        return Arrive((Vector2) (_cam.ScreenToWorldPoint(Input.mousePosition)), defaultDecceleration);
     }
 
     // Seek steering behavior, go to a given position
@@ -44,7 +50,7 @@ public class SteeringBehavior : MonoBehaviour
     {
         Vector2 desiredVelocity = (target - (Vector2) transform.position).normalized * _movement.maxSpeed;
          
-        return seekWeight * (desiredVelocity - _movement.velocity);
+        return arriveWeight * (desiredVelocity - _movement.velocity);
     }
 
     private Vector2 Arrive(in Vector3 target, Decceleration decceleration = Decceleration.normal)
@@ -54,11 +60,11 @@ public class SteeringBehavior : MonoBehaviour
 
         if (distance <= 0.01) return Vector2.zero;
 
-        const float tweaker = 0.03f;
+        const float tweaker = 0.003f;
 
         // Required speed
         float speed = distance / ((float) decceleration * tweaker);
-        speed = Mathf.Min(speed,(float) _movement.maxSpeed);
+        speed = Mathf.Min(speed, (float) _movement.maxSpeed);
 
         // normalize and scale to desired speed
         Vector2 desiredVelocity = toTarget * speed / distance;

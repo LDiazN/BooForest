@@ -246,9 +246,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1046779050}
   - component: {fileID: 1046779053}
-  - component: {fileID: 1046779052}
   - component: {fileID: 1046779051}
   - component: {fileID: 1046779054}
+  - component: {fileID: 1046779055}
+  - component: {fileID: 1046779052}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -264,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046779049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.44345108, y: 2.0290065, z: -28.23668}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -284,6 +285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cam: {fileID: 250352627}
   seekWeight: 1
+  arriveWeight: 1
+  targetPosition: {x: 0, y: 0}
+  defaultDecceleration: 2
 --- !u!114 &1046779052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,11 +297,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1046779049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6223f17a703ea48ac6cc6798ebdcdc, type: 3}
+  m_Script: {fileID: 11500000, guid: c81a19b9354f53341aa6200bac2307b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 10
-  _mass: 0.1
+  _mass: 10
   _maxForce: 100
 --- !u!50 &1046779053
 Rigidbody2D:
@@ -370,6 +374,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1046779055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046779049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4121970318567489e7696fe0a03e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1329703298
 GameObject:
   m_ObjectHideFlags: 0
