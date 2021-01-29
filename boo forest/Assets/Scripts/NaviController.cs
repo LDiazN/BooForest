@@ -14,9 +14,13 @@ public class NaviController : MonoBehaviour
 
     public KeyCode Call;
 
-    public float naviSpeed = 1.0f;
+    [SerializeField]
+    private float _maxSpeed = 10f;
+    [SerializeField]
+    private float _smoothTime = 0.1f;
 
     private Vector3 worldMousePos;
+    private Vector2 _vel = Vector2.zero; 
 
     // Insertar componente de mover player
 
@@ -27,6 +31,7 @@ public class NaviController : MonoBehaviour
             Debug.Log("EL PLAYER ES NULL");
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -35,12 +40,12 @@ public class NaviController : MonoBehaviour
 
         GoingPosition();
     }
+
+
     // Go to mouse position
     void GoingPosition()
     {
         worldMousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = worldMousePos - transform.position;
-
-        transform.Translate(Time.deltaTime * direction * naviSpeed);
+        transform.position = Vector2.SmoothDamp(transform.position, worldMousePos, ref _vel, _smoothTime, _maxSpeed);
     }
 }
