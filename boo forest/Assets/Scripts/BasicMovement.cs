@@ -52,7 +52,7 @@ public class BasicMovement : MonoBehaviour
         _velocity += acceleration * Time.deltaTime;
         if (_velocity.sqrMagnitude > _maxSpeed * _maxSpeed)
             _velocity = Vector2.ClampMagnitude(_velocity, _maxSpeed);
-        Debug.Log("My velocity is " + _velocity);
+
         // Update position:
         Move(_velocity);
 
