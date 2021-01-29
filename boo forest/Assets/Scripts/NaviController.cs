@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NaviPointer : MonoBehaviour
+public class NaviController : MonoBehaviour
 {
 
     [SerializeField()]
@@ -30,12 +30,17 @@ public class NaviPointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        worldMousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetKey(Call))
             Debug.Log("Moving to position " + worldMousePos);
 
-        var direction = worldMousePos - transform.position;
-        direction.z = 0;
+        GoingPosition();
+    }
+    // Go to mouse position
+    void GoingPosition()
+    {
+        worldMousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = worldMousePos - transform.position;
+
         transform.Translate(Time.deltaTime * direction * naviSpeed);
     }
 }
