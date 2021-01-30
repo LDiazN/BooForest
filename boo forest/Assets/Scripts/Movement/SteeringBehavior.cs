@@ -9,8 +9,11 @@ public class SteeringBehavior : MonoBehaviour
     public Camera _cam;
     private SteeringMovement _movement;
 
+
+    // ------------- Seek stuff ------------------------
     [SerializeField()]
     public float seekWeight = 1.0f;
+    public Vector2 targetPosition = Vector2.zero;
 
     // ------------- Arrive stuff ------------------------
     [SerializeField()]
@@ -18,7 +21,6 @@ public class SteeringBehavior : MonoBehaviour
     public bool arriveOn { get; private set; }
     private Vector2 _arriveTarget = Vector2.zero;
     [HideInInspector()]
-    public Vector2 targetPosition = Vector2.zero;
     public Decceleration defaultDecceleration = Decceleration.normal;
 
 
@@ -37,6 +39,14 @@ public class SteeringBehavior : MonoBehaviour
     // ------------- Pursuit stuff ----------------------
     private GameObject _pursuitTarget;
     public bool purseOn { get; private set; }
+
+    // ------------- Flee stuff -------------------------
+    private Vector2 _fleeTarget = Vector2.zero;
+    public bool fleeOn { get; private set; }
+
+    // ------------- Evade stuff ------------------------
+    private GameObject _evadeTarget;
+    public bool evadeOn { get; private set; }
 
     public enum Decceleration
     {
@@ -67,6 +77,7 @@ public class SteeringBehavior : MonoBehaviour
         if (arriveOn) resultingForce += arriveWeight * Arrive(_arriveTarget, defaultDecceleration);
         if (wanderOn) resultingForce += wanderWeight * Wander();
         if (purseOn)  resultingForce += Pursuit(_pursuitTarget);
+        if (evadeOn)  resultingForce += Evade(_evadeTarget);
 
         return resultingForce;
     }
@@ -135,7 +146,7 @@ public class SteeringBehavior : MonoBehaviour
 
     // ---------------- Pursue ---------------------
 
-    public Vector2 Pursuit(in GameObject target)
+    private Vector2 Pursuit(in GameObject target)
     {
         // Check if target is valid
         if (target == null)
@@ -159,7 +170,7 @@ public class SteeringBehavior : MonoBehaviour
         float lookAheadTime = toTarget.magnitude / (_movement.maxSpeed + targetMovement.velocity.magnitude);
 
         var x = Seek((Vector2)target.transform.position + _movement.velocity * lookAheadTime);
-        Debug.Log("Im pursuing from steering behavior " + x);
+
         return x;
     }
 
@@ -170,4 +181,51 @@ public class SteeringBehavior : MonoBehaviour
     }
 
     public void StopPurse() => purseOn = false;
+
+    // ---------------- Flee ------------------
+    private Vector2 Flee(in Vector2 taget)
+    {
+        Vector2 resultingForce = Vector2.zero;
+
+        var desiredVelocity = ((Vector2)transform.position - taget).normalized * _movement.maxSpeed;
+
+        resultingForce = desiredVelocity - _movement.velocity;
+
+        return resultingForce;
+    }
+
+    // ---------------- Evade ----------------
+    private Vector2 Evade(in GameObject target)
+    {
+        var resultingForce = Vector2.zero;
+        if( target == null)
+        {
+            Debug.LogError("I CAN'T ESCAPE FROM A NULL TARGET");
+            return resultingForce;
+        }
+
+        var targetMovement = target.GetComponent<SteeringMovement>();
+        if (targetMovement == null)
+        {
+            Debug.LogError("THIS TARGET SHOULD HAVE A STEERING MOVEMENT COMPONENT, BUT IT DOESN'T");
+            return resultingForce;
+        }
+            
+
+        Vector2 toTarget = target.transform.position - transform.position;
+
+        float lookAheadTime = toTarget.magnitude / (_movement.maxSpeed + targetMovement.velocity.magnitude);
+
+        resultingForce = Flee((Vector2) target.transform.position + targetMovement.velocity * lookAheadTime);
+
+        return resultingForce;
+    }
+
+    public void EvadeTo(in GameObject target)
+    {
+        _evadeTarget = target;
+        evadeOn = true;
+    }
+
+    public void StopEvade() => evadeOn = false;
 }

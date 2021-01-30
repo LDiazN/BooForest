@@ -16,7 +16,7 @@ public class StallkerIA : MonoBehaviour
         if (_behaviorMachine == null)
             Debug.LogError("MISSING STEERING MOVEMENT COMPONENT IN STALKER");
 
-        CurrentAction = Pursuing;
+        CurrentAction = Avoid;
     }
 
     // Update is called once per frame
@@ -25,14 +25,37 @@ public class StallkerIA : MonoBehaviour
         CurrentAction();
     }
 
-    void Wandering()
+    private void Wandering()
     {
         _behaviorMachine.wanderOn = true;
     }
 
-    void Pursuing()
+    private void Pursuing()
     {
         var player = PlayerStatus.Instance.gameObject;
-        _behaviorMachine.Pursuit(player);
+        _behaviorMachine.Purse(player);
+
+        Vector2 toPlayer = player.transform.position - transform.position;
+        if (toPlayer.sqrMagnitude < 0.001)
+        {
+            _behaviorMachine.StopPurse();
+            CurrentAction = Idle;
+        }
+    }
+
+    private void Avoid()
+    {
+        var player = PlayerStatus.Instance.gameObject;
+        Vector2 toPlayer = player.transform.position - transform.position;
+        if (toPlayer.sqrMagnitude < 4 * 4)
+            _behaviorMachine.EvadeTo(player);
+        else
+            _behaviorMachine.StopEvade();
+
+    }
+
+    private void Idle()
+    {
+
     }
 }
