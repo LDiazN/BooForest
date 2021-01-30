@@ -7,7 +7,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 [RequireComponent(typeof(Light2D))]
 public class NaviController : MonoBehaviour
 {
-    [SerializeField]
     private Light2D _light;
     [SerializeField]
     private Color _color = Color.white;
