@@ -9,7 +9,10 @@ public class SteeringMovement : BasicMovement
     private SteeringBehavior steeringBehavior;
 
     private Vector2 _heading = Vector2.right;
+    public Vector2 heading { get { return _heading; } }
     private Vector2 _side = Vector2.up;
+    public Vector2 side { get { return _side; } }
+
 
     [SerializeField()]
     private float _maxSpeed = 10.0f;
