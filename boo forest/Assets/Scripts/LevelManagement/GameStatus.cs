@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public enum GameStat
 {
+    None,
     Playing,
     GameOver,
     Victory,
@@ -21,9 +22,11 @@ public class GameStatus : MonoBehaviour
         get { return _status; }
     }
 
+    public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
     public UnityEvent OnVictory;
 
+    public float fadeInTime = 3f;
 
     private void Awake()
     {
@@ -40,6 +43,11 @@ public class GameStatus : MonoBehaviour
         PlayerStatus.Instance.death.OnPlayerDeath.AddListener(GameOver);    
     }
 
+    private IEnumerator StartGame()
+    {
+        yield return UIManagement.Instance.StartCoroutine(UIManagement.Instance.FadeScreen(fadeInTime));
+        OnGameStart.Invoke();
+    }
 
     public void GameOver()
     {

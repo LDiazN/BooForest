@@ -1,19 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManagement : MonoBehaviour
 {
+    public static UIManagement Instance { get; private set; }
+
     public GameObject gameOverUI;
     public GameObject endLevelUI;
+    public Image blackImage;
 
     private CanvasGroup gameOverCG;
     private CanvasGroup endLevelCG;
 
-    public float fadeTime = 2.5f;
+    public float uiFadeTime = 2.5f;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("Mira maldito, esto es un singleton ." + gameObject.name);
+        }
+        Instance = this;
+
         gameOverCG = gameOverUI.GetComponent<CanvasGroup>();
         endLevelCG = endLevelUI.GetComponent<CanvasGroup>();
 
@@ -23,7 +32,7 @@ public class UIManagement : MonoBehaviour
         gameOverUI.SetActive(false);
         endLevelUI.SetActive(false);
 
-        Debug.Log("Hola?");
+        blackImage.color = new Color(0f, 0f, 0f, 1f);
     }
 
     private void Start()
@@ -31,16 +40,6 @@ public class UIManagement : MonoBehaviour
         GameStatus.Instance.OnGameOver.AddListener(EnableGOUI);
         GameStatus.Instance.OnVictory.AddListener(EnableELUI);
     }
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-            EnableGOUI();
-        else if (Input.GetKeyDown(KeyCode.H))
-            EnableELUI();
-    }
-
 
     public void EnableGOUI()
     {
@@ -58,7 +57,7 @@ public class UIManagement : MonoBehaviour
 
     private IEnumerator FadeInUI(CanvasGroup cg)
     {
-        float step = 1f / 2.5f;
+        float step = 1f / uiFadeTime;
         float t = 0f;
 
         while (cg.alpha != 1f)
@@ -69,5 +68,22 @@ public class UIManagement : MonoBehaviour
         }
 
         cg.alpha = 1f;
+    }
+
+    public IEnumerator FadeScreen(float fadeTime)
+    {
+        float step = 1f / fadeTime;
+        float t = 0f;
+        float val = 1f;
+        while (blackImage.color.a != 0f)
+        {
+            t += step * Time.deltaTime;
+            val = Mathf.Lerp(1f, 0f, t);
+            blackImage.color = new Color(0f, 0f, 0f, val);
+            Debug.Log(val);
+            yield return null;
+        }
+
+        blackImage.color = new Color(0f, 0f, 0f, 0f);
     }
 }

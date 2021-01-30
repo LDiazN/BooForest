@@ -17,6 +17,7 @@ public class Lamp : MonoBehaviour
     [SerializeField]
     private float _offTime = 3f;
 
+    private bool _goingOff = false;
     private bool _off = false;
 
     private void Awake()
@@ -34,7 +35,7 @@ public class Lamp : MonoBehaviour
 
     public IEnumerator TurnOffLight()
     {
-        _off = true;
+        _goingOff = true;
         float initialInt = _light2D.intensity;
         float step = 1f / _offTime;
         float t = 0f;
@@ -49,6 +50,9 @@ public class Lamp : MonoBehaviour
 
         _coll2d.enabled = false;
         _light2D.enabled = false;
+
+        _goingOff = false;
+        _off = true;
     }
 
 
@@ -61,6 +65,14 @@ public class Lamp : MonoBehaviour
         {
             StartCoroutine(TurnOffLight());
             collision.GetComponent<PlayerStatus>().inLight = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerStatus.Instance.inLight = false;
         }
     }
 }
