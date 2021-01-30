@@ -60,6 +60,7 @@ public class Lamp : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(TurnOffLight());
+            collision.GetComponent<PlayerStatus>().inLight = true;
         }
     }
 }
