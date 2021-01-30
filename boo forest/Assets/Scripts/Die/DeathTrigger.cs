@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class DeathTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private UnityEvent OnPlayerDeath;
+    public UnityEvent OnPlayerDeath;
 
     private void Die()
     {
