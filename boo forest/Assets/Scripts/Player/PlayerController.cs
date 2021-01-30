@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
         CurrentAction = ArrivePosition;
     }
 
+    public void Stop()
+    {
+        _behaviorMachine.ArriveStop();
+        CurrentAction = Idle;
+    }
+
     // when the player is doing nothing
     private void Idle()
     {
@@ -51,8 +57,7 @@ public class PlayerController : MonoBehaviour
 
         if (toTarget.sqrMagnitude <= 0.01)
         {
-            _behaviorMachine.ArriveStop();
-            Idle();
+            Stop();
         }
     }
 
