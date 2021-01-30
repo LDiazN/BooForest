@@ -45,7 +45,7 @@ public class GameStatus : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        yield return UIManagement.Instance.StartCoroutine(UIManagement.Instance.FadeScreen(fadeInTime));
+        yield return UIManagement.Instance.StartCoroutine(UIManagement.Instance.FadeScreen(fadeInTime, true));
         OnGameStart.Invoke();
     }
 

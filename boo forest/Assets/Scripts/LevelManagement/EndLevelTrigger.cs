@@ -8,8 +8,30 @@ public class EndLevelTrigger : MonoBehaviour
 {
     public int nextLevel;
 
-    public static void LoadLevel(int level)
+
+    public void ToMainMenu()
     {
+        StartCoroutine(LoadNextLevel(0));
+    }
+
+
+    public void LoadLevel(int level)
+    {
+        StartCoroutine(LoadNextLevel(level));
+    }
+
+
+    public void RestartLevel()
+    {
+        StartCoroutine(LoadNextLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+
+    public IEnumerator LoadNextLevel(int level)
+    {
+        yield return UIManagement.Instance.StartCoroutine(
+            UIManagement.Instance.FadeScreen(GameStatus.Instance.fadeInTime, false));
+
         SceneManager.LoadScene(level);
     }
 

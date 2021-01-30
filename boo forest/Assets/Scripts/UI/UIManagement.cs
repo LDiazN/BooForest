@@ -70,15 +70,19 @@ public class UIManagement : MonoBehaviour
         cg.alpha = 1f;
     }
 
-    public IEnumerator FadeScreen(float fadeTime)
+    public IEnumerator FadeScreen(float fadeTime, bool toZero)
     {
         float step = 1f / fadeTime;
         float t = 0f;
         float val = 1f;
+
+        float a = (toZero ? 1f : 0f);
+        float b = (toZero ? 0f : 1f);
+
         while (blackImage.color.a != 0f)
         {
             t += step * Time.deltaTime;
-            val = Mathf.Lerp(1f, 0f, t);
+            val = Mathf.Lerp(a, b, t);
             blackImage.color = new Color(0f, 0f, 0f, val);
             Debug.Log(val);
             yield return null;
