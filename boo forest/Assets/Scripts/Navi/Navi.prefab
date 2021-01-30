@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c8a61e40862c142a32013310112fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _cam: {fileID: 0}
   player: {fileID: 0}
   Call: 323
@@ -105,7 +107,7 @@ MonoBehaviour:
   _radius: 10
   _signalLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 513
 --- !u!114 &5365328805054299196
 MonoBehaviour:
   m_ObjectHideFlags: 0
