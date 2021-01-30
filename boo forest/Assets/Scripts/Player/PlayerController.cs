@@ -45,12 +45,10 @@ public class PlayerController : MonoBehaviour
     // when the player is doing nothing
     private void Idle()
     {
-        Debug.Log("I'm idle");
     }
 
     private void ArrivePosition()
     {
-        Debug.Log("Im moving to: " + _goToTarget);
 
         _behaviorMachine.ArriveTo(_goToTarget);
         var toTarget = _goToTarget - (Vector2)transform.position;
