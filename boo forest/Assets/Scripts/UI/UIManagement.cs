@@ -22,6 +22,8 @@ public class UIManagement : MonoBehaviour
 
         gameOverUI.SetActive(false);
         endLevelUI.SetActive(false);
+
+        Debug.Log("Hola?");
     }
 
     private void Start()
@@ -31,17 +33,26 @@ public class UIManagement : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+            EnableGOUI();
+        else if (Input.GetKeyDown(KeyCode.H))
+            EnableELUI();
+    }
+
+
     public void EnableGOUI()
     {
         gameOverUI.SetActive(true);
-        FadeInUI(gameOverCG);
+        StartCoroutine(FadeInUI(gameOverCG));
     }
 
 
     public void EnableELUI()
     {
         endLevelUI.SetActive(true);
-        FadeInUI(endLevelCG);
+        StartCoroutine(FadeInUI(endLevelCG));
     }
 
 
@@ -52,7 +63,7 @@ public class UIManagement : MonoBehaviour
 
         while (cg.alpha != 1f)
         {
-            t += step;
+            t += step * Time.deltaTime;
             cg.alpha = Mathf.Lerp(0, 1f, t);
             yield return null;
         }

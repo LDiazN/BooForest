@@ -7,7 +7,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 [RequireComponent(typeof(Light2D))]
 public class NaviController : MonoBehaviour
 {
-    [SerializeField]
     private Light2D _light;
     [SerializeField]
     private Color _color = Color.white;
@@ -15,8 +14,7 @@ public class NaviController : MonoBehaviour
     [SerializeField]
     private Camera _cam;
 
-    [SerializeField()]
-    public GameObject player;
+    private GameObject _player;
 
     public KeyCode Call = KeyCode.Mouse0;
 
@@ -59,11 +57,13 @@ public class NaviController : MonoBehaviour
     private void Start()
     {
         // setup player
-        if (player == null)
+        _player = PlayerStatus.Instance.gameObject;
+
+        if (_player == null)
             Debug.Log("EL PLAYER ES NULL");
 
         // setup player controller
-        _playerController = player.GetComponent<PlayerController>();
+        _playerController = _player.GetComponent<PlayerController>();
         if (_playerController == null)
             Debug.Log("EL PLAYER NO TIENE UN PLAYER CONTROLLER");
 
@@ -116,7 +116,7 @@ public class NaviController : MonoBehaviour
         ProcessSignalHits(hits);
 
         // Call the player:
-        Vector2 clickToPlayer = worldMousePos - player.transform.position;
+        Vector2 clickToPlayer = worldMousePos - _player.transform.position;
 
         Debug.Log("distance to player " + clickToPlayer.sqrMagnitude);
         if (clickToPlayer.sqrMagnitude <= _radius * _radius)
