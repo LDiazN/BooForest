@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public bool inLight = false; 
+    public static PlayerStatus Instance { get; private set; }
+    public bool inLight = false;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("Mira maldito, esto es un singleton ." + gameObject.name);
+        }
+        Instance = this;
+    }
 }
