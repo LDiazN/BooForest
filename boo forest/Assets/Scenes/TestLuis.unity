@@ -461,6 +461,11 @@ PrefabInstance:
       propertyPath: m_FalloffIntensity
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5365328805054299196, guid: ef4e178438266f84e8b4ba4d80489e2e,
+        type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 5930006546037039245, guid: ef4e178438266f84e8b4ba4d80489e2e,
         type: 3}
       propertyPath: m_Name
