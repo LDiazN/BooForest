@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8903867880424208533}
   m_Layer: 0
   m_Name: Pedro
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4239859256466940684}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -86,9 +86,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cam: {fileID: 0}
   seekWeight: 1
-  arriveWeight: 1
   targetPosition: {x: 0, y: 0}
+  arriveWeight: 1
   defaultDecceleration: 2
+  _wanderDistance: 5
+  _wanderRadius: 1
+  _wanderJitter: 0.01
+  wanderWeight: 1
 --- !u!114 &8128695322342681479
 MonoBehaviour:
   m_ObjectHideFlags: 0

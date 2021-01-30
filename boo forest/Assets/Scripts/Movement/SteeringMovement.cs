@@ -16,7 +16,7 @@ public class SteeringMovement : BasicMovement
 
     [SerializeField()]
     private float _maxSpeed = 10.0f;
-    public float maxSpeed { get { return _maxSpeed; } }
+    public float maxSpeed { get { return _maxSpeed; } set { _maxSpeed = value; } }
 
     [SerializeField()]
     private float _mass = 10.0f;
@@ -61,4 +61,6 @@ public class SteeringMovement : BasicMovement
         Debug.DrawLine(transform.position, transform.position + ((Vector3)_heading), Color.red);
         Debug.DrawLine(transform.position, transform.position + ((Vector3)_side), Color.blue);
     }
+
+    public void Stop() => _velocity = Vector2.zero;
 }
