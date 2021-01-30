@@ -18,7 +18,7 @@ public class NaviController : MonoBehaviour
     [SerializeField()]
     public GameObject player;
 
-    public KeyCode Call;
+    public KeyCode Call = KeyCode.Mouse0;
 
     [SerializeField]
     private float _maxSpeed = 10f;
@@ -40,8 +40,11 @@ public class NaviController : MonoBehaviour
     [SerializeField]
     private LayerMask _signalLayer = 0;
 
-    // Insertar componente de mover player
+    // How long a signal can attract interested entities
+    [SerializeField]
+    private float _circleSignalDuration;
 
+    PlayerController _playerController;
 
     private void Awake()
     {
@@ -55,8 +58,15 @@ public class NaviController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // setup player
         if (player == null)
             Debug.Log("EL PLAYER ES NULL");
+
+        // setup player controller
+        _playerController = player.GetComponent<PlayerController>();
+        if (_playerController == null)
+            Debug.Log("EL PLAYER NO TIENE UN PLAYER CONTROLLER");
+
     }
 
 
@@ -104,5 +114,20 @@ public class NaviController : MonoBehaviour
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(target, _radius, _signalLayer);
         ProcessSignalHits(hits);
+
+        // Call the player:
+        Vector2 clickToPlayer = worldMousePos - player.transform.position;
+
+        Debug.Log("distance to player " + clickToPlayer.sqrMagnitude);
+        if (clickToPlayer.sqrMagnitude <= _radius * _radius)
+        {
+            _playerController.GoTo(worldMousePos);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(worldMousePos, _radius);
     }
 }

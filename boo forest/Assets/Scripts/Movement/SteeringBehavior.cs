@@ -14,6 +14,8 @@ public class SteeringBehavior : MonoBehaviour
 
     [SerializeField()]
     public float arriveWeight = 1.0f;
+    public bool  arriveOn { get; private set; }
+    private Vector2 _arriveTarget = Vector2.zero;
 
     [HideInInspector()]
     public Vector2 targetPosition = Vector2.zero;
@@ -42,7 +44,11 @@ public class SteeringBehavior : MonoBehaviour
     // Compute resulting Steering force
     public Vector2 Calculate()
     {
-        return Arrive((Vector2) (_cam.ScreenToWorldPoint(Input.mousePosition)), defaultDecceleration);
+        Vector2 resultingForce = Vector2.zero;
+
+        if (arriveOn) resultingForce += arriveWeight * Arrive(_arriveTarget, defaultDecceleration);
+
+        return resultingForce;
     }
 
     // Seek steering behavior, go to a given position
@@ -71,4 +77,12 @@ public class SteeringBehavior : MonoBehaviour
 
         return desiredVelocity - _movement.velocity;
     }
+
+    public void ArriveTo(in Vector2 target)
+    {
+        _arriveTarget = target;
+        arriveOn = true;
+    }
+
+    public void ArriveStop() => arriveOn = false;
 }
