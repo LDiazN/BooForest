@@ -65,7 +65,10 @@ public class StallkerIA : MonoBehaviour
 
         Vector2 toPlayer = player.transform.position - transform.position;
         if (toPlayer.sqrMagnitude <= _detectingRadius* _detectingRadius)
+        {
+            _behaviorMachine.wanderOn = false;
             CurrentAction = Stalk;
+        }
 
     }
 

@@ -430,6 +430,11 @@ PrefabInstance:
       propertyPath: _radius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7443211737790023505, guid: 8159e9d636b437940a293828aa73cd36,
+        type: 3}
+      propertyPath: _offTime
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8159e9d636b437940a293828aa73cd36, type: 3}
 --- !u!1 &1871274526
@@ -469,7 +474,7 @@ MonoBehaviour:
   _criticalRadius: 1
   _criticalSpeed: 500
   _minimumStalkSpeed: 1
-  _maximumStalkSpeed: 10
+  _maximumStalkSpeed: 30
   _distanceFromCriticalRadius: 4
   _maxDistanceToAvoid: 3
 --- !u!212 &1871274528
