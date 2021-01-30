@@ -56,6 +56,6 @@ public class SteeringMovement : BasicMovement
         }
 
         Debug.DrawLine(transform.position, transform.position + ((Vector3)_heading), Color.red);
-        Debug.DrawLine(transform.position, transform.position + ((Vector3)_side),    Color.blue);
+        Debug.DrawLine(transform.position, transform.position + ((Vector3)_side), Color.blue);
     }
 }

@@ -14,6 +14,8 @@ public class SteeringBehavior : MonoBehaviour
 
     [SerializeField()]
     public float arriveWeight = 1.0f;
+    public bool arriveOn { get; private set; }
+    private Vector2 _arriveTarget = Vector2.zero;
 
     [HideInInspector()]
     public Vector2 targetPosition = Vector2.zero;
@@ -22,9 +24,9 @@ public class SteeringBehavior : MonoBehaviour
 
     public enum Decceleration
     {
-        fast    = 1,
-        normal  = 2,
-        slow    = 3
+        fast = 1,
+        normal = 2,
+        slow = 3
     };
 
     private void Awake()
@@ -42,14 +44,18 @@ public class SteeringBehavior : MonoBehaviour
     // Compute resulting Steering force
     public Vector2 Calculate()
     {
-        return Arrive((Vector2) (_cam.ScreenToWorldPoint(Input.mousePosition)), defaultDecceleration);
+        Vector2 resultingForce = Vector2.zero;
+
+        if (arriveOn) resultingForce += arriveWeight * Arrive(_arriveTarget, defaultDecceleration);
+
+        return resultingForce;
     }
 
     // Seek steering behavior, go to a given position
     private Vector2 Seek(in Vector2 target)
     {
-        Vector2 desiredVelocity = (target - (Vector2) transform.position).normalized * _movement.maxSpeed;
-         
+        Vector2 desiredVelocity = (target - (Vector2)transform.position).normalized * _movement.maxSpeed;
+
         return arriveWeight * (desiredVelocity - _movement.velocity);
     }
 
@@ -63,12 +69,20 @@ public class SteeringBehavior : MonoBehaviour
         const float tweaker = 0.003f;
 
         // Required speed
-        float speed = distance / ((float) decceleration * tweaker);
-        speed = Mathf.Min(speed, (float) _movement.maxSpeed);
+        float speed = distance / ((float)decceleration * tweaker);
+        speed = Mathf.Min(speed, (float)_movement.maxSpeed);
 
         // normalize and scale to desired speed
         Vector2 desiredVelocity = toTarget * speed / distance;
 
         return desiredVelocity - _movement.velocity;
     }
+
+    public void ArriveTo(in Vector2 target)
+    {
+        _arriveTarget = target;
+        arriveOn = true;
+    }
+
+    public void ArriveStop() => arriveOn = false;
 }
