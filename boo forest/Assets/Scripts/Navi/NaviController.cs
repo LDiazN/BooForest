@@ -57,7 +57,7 @@ public class NaviController : MonoBehaviour
     private void Start()
     {
         // setup player
-        _player = (PlayerStatus.Instance ? PlayerStatus.Instance.gameObject : null);
+        _player = (PlayerStatus.Instance ? PlayerStatus.Instance.gameObject : null);    
 
         if (_player == null)
             Debug.Log("EL PLAYER ES NULL");
