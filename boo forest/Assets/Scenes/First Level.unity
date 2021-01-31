@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
+  m_CameraOutput: 0
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -259,7 +260,6 @@ MonoBehaviour:
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
-  m_ClearDepth: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -347,6 +347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6678924703944436524, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
+      propertyPath: m_Tiles.Array.size
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678924703944436524, guid: bdc094ade52fc84428eaa9a6a4697bb1,
+        type: 3}
       propertyPath: m_Size.x
       value: 40
       objectReference: {fileID: 0}
@@ -359,11 +364,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Origin.y
       value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6678924703944436524, guid: bdc094ade52fc84428eaa9a6a4697bb1,
-        type: 3}
-      propertyPath: m_Tiles.Array.size
-      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 6678924703944436524, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
@@ -1787,6 +1787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6678924704131529578, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
+      propertyPath: m_Tiles.Array.size
+      value: 506
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678924704131529578, guid: bdc094ade52fc84428eaa9a6a4697bb1,
+        type: 3}
       propertyPath: m_Size.x
       value: 49
       objectReference: {fileID: 0}
@@ -1799,11 +1804,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Origin.y
       value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6678924704131529578, guid: bdc094ade52fc84428eaa9a6a4697bb1,
-        type: 3}
-      propertyPath: m_Tiles.Array.size
-      value: 506
       objectReference: {fileID: 0}
     - target: {fileID: 6678924704131529578, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
@@ -16492,6 +16492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6997528965301747261, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
+      propertyPath: m_Tiles.Array.size
+      value: 186
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997528965301747261, guid: bdc094ade52fc84428eaa9a6a4697bb1,
+        type: 3}
       propertyPath: m_Size.x
       value: 54
       objectReference: {fileID: 0}
@@ -16504,11 +16509,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Origin.y
       value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6997528965301747261, guid: bdc094ade52fc84428eaa9a6a4697bb1,
-        type: 3}
-      propertyPath: m_Tiles.Array.size
-      value: 186
       objectReference: {fileID: 0}
     - target: {fileID: 6997528965301747261, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
@@ -22771,6 +22771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634132650649459100, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
+      propertyPath: m_Tiles.Array.size
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132650649459100, guid: bdc094ade52fc84428eaa9a6a4697bb1,
+        type: 3}
       propertyPath: m_Size.x
       value: 53
       objectReference: {fileID: 0}
@@ -22783,11 +22788,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Origin.y
       value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634132650649459100, guid: bdc094ade52fc84428eaa9a6a4697bb1,
-        type: 3}
-      propertyPath: m_Tiles.Array.size
-      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 8634132650649459100, guid: bdc094ade52fc84428eaa9a6a4697bb1,
         type: 3}
