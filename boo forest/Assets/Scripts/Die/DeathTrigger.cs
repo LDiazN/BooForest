@@ -7,8 +7,19 @@ public class DeathTrigger : MonoBehaviour
 {
     public UnityEvent OnPlayerDeath;
 
+    private AudioSource _deathSrc;
+
+    private void Awake()
+    {
+        if (_deathSrc == null)
+            Debug.LogWarning("Necesitas un audio source para el death trigger");
+        _deathSrc.loop = false;
+    }
+
+
     private void Die()
     {
+        _deathSrc.Play();
         OnPlayerDeath.Invoke();
     }
 
