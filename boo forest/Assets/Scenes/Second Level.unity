@@ -732,6 +732,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1673659434446135760, guid: ce1c54bf316c3f44680cf8dfa36afda0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673659434446135760, guid: ce1c54bf316c3f44680cf8dfa36afda0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4239859256466940684, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
       propertyPath: m_Name
@@ -745,12 +755,12 @@ PrefabInstance:
     - target: {fileID: 4239859256466940685, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.98
+      value: 27.37
       objectReference: {fileID: 0}
     - target: {fileID: 4239859256466940685, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.48
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4239859256466940685, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
@@ -1150,7 +1160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1139109711
 MonoBehaviour:
   m_ObjectHideFlags: 0
