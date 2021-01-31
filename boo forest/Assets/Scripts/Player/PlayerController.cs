@@ -58,9 +58,4 @@ public class PlayerController : MonoBehaviour
             Stop();
         }
     }
-
-    private void Death()
-    {
-
-    }
 }

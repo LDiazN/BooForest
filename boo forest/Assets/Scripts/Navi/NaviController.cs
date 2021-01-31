@@ -34,21 +34,18 @@ public class NaviController : MonoBehaviour
     private Vector2 _vel = Vector2.zero;
 
     [SerializeField]
-    private float _radius = 10f;
+    private float _lightRadius = 10f;
     [SerializeField]
     private LayerMask _signalLayer = 0;
 
-    // How long a signal can attract interested entities
-    [SerializeField]
-    private float _circleSignalDuration;
 
-    PlayerController _playerController;
+    private PlayerController _playerController;
 
     private void Awake()
     {
         _light = GetComponent<Light2D>();
         _light.lightType = Light2D.LightType.Point;
-        _light.pointLightOuterRadius = _radius / 4f;
+        _light.pointLightOuterRadius = _lightRadius;
         _light.color = _color;
     }
 
@@ -112,15 +109,16 @@ public class NaviController : MonoBehaviour
         target = worldMousePos;
         _turboing = true;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(target, _radius, _signalLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(target, _lightRadius, _signalLayer);
         ProcessSignalHits(hits);
 
         // Call the player:
         Vector2 clickToPlayer = worldMousePos - _player.transform.position;
 
-        Debug.Log("distance to player " + clickToPlayer.sqrMagnitude);
-        if (clickToPlayer.sqrMagnitude <= _radius * _radius)
+        //Debug.Log("distance to player " + clickToPlayer.sqrMagnitude);
+        if (clickToPlayer.sqrMagnitude <= _lightRadius * _lightRadius)
         {
+            Debug.Log("hola");
             _playerController.GoTo(worldMousePos);
         }
     }
@@ -128,6 +126,6 @@ public class NaviController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(worldMousePos, _radius);
+        Gizmos.DrawWireSphere(worldMousePos, _lightRadius);
     }
 }

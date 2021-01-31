@@ -7,6 +7,7 @@ public class DeathTrigger : MonoBehaviour
 {
     public UnityEvent OnPlayerDeath;
 
+    [SerializeField]
     private AudioSource _deathSrc;
 
     private void Awake()

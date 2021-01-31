@@ -57,7 +57,6 @@ public class UIManagement : MonoBehaviour
         if (buttonSource.isPlaying)
             return;
 
-        Debug.Log("Gatoo");
         buttonSource.Play();
     }
 
@@ -97,7 +96,6 @@ public class UIManagement : MonoBehaviour
             t += step * Time.deltaTime;
             val = Mathf.Lerp(a, b, t);
             blackImage.color = new Color(0f, 0f, 0f, val);
-            Debug.Log(val);
             yield return null;
         }
 
