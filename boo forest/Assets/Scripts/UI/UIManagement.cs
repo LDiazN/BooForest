@@ -10,6 +10,8 @@ public class UIManagement : MonoBehaviour
     public GameObject endLevelUI;
     public Image blackImage;
 
+    public AudioSource buttonSource = null;
+
     private CanvasGroup gameOverCG;
     private CanvasGroup endLevelCG;
 
@@ -33,6 +35,8 @@ public class UIManagement : MonoBehaviour
         endLevelUI.SetActive(false);
 
         blackImage.color = new Color(0f, 0f, 0f, 1f);
+
+        buttonSource.loop = false;
     }
 
     private void Start()
@@ -47,6 +51,15 @@ public class UIManagement : MonoBehaviour
         StartCoroutine(FadeInUI(gameOverCG));
     }
 
+
+    public void PlayKittySound()
+    {
+        if (buttonSource.isPlaying)
+            return;
+
+        Debug.Log("Gatoo");
+        buttonSource.Play();
+    }
 
     public void EnableELUI()
     {
