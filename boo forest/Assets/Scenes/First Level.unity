@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -203,12 +203,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 185721591}
-        m_MethodName: RestartLevel
-        m_Mode: 1
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cc71cf0d4b1cc4b4eaf72753793bf9a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 429f2e805525d8b4fb16e7d8a60f8710, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -407,7 +407,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 260, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &257415631
 MonoBehaviour:
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7ffd9a5a823eaa34786a2b50ff0d1975, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -633,6 +633,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1673659434446135760, guid: ce1c54bf316c3f44680cf8dfa36afda0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673659434446135760, guid: ce1c54bf316c3f44680cf8dfa36afda0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4239859256466940684, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
       propertyPath: m_Name
@@ -646,12 +656,12 @@ PrefabInstance:
     - target: {fileID: 4239859256466940685, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.2
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4239859256466940685, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.8
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 4239859256466940685, guid: ce1c54bf316c3f44680cf8dfa36afda0,
         type: 3}
@@ -923,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1139109711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,7 +1118,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 295, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229816682
 MonoBehaviour:
@@ -1129,7 +1139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 92d18df008f493b43b4e04cbfc956bf1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1404,6 +1414,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EndLevelTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572175412180414974, guid: eda6a7083ea767a40a47e2faf90d653b,
+        type: 3}
+      propertyPath: nextLevel
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3876399135340840445, guid: eda6a7083ea767a40a47e2faf90d653b,
         type: 3}
@@ -27720,7 +27735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4951683437693041998
 RectTransform:
   m_ObjectHideFlags: 0
