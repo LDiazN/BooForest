@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6649707149860351103}
   - component: {fileID: 6649707149860351102}
   - component: {fileID: 6649707149860351041}
-  m_Layer: 0
+  - component: {fileID: -7006412880257563799}
+  m_Layer: 9
   m_Name: Stalker
-  m_TagString: Untagged
+  m_TagString: Die
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,3 +162,19 @@ MonoBehaviour:
   _maximumStalkSpeed: 30
   _distanceFromCriticalRadius: 4
   _maxDistanceToAvoid: 3
+--- !u!58 &-7006412880257563799
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6649707149860351040}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
