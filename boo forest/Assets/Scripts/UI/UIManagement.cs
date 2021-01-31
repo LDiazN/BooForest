@@ -91,7 +91,7 @@ public class UIManagement : MonoBehaviour
         float a = (toZero ? 1f : 0f);
         float b = (toZero ? 0f : 1f);
 
-        while (blackImage.color.a != 0f)
+        while (blackImage.color.a != b)
         {
             t += step * Time.deltaTime;
             val = Mathf.Lerp(a, b, t);
