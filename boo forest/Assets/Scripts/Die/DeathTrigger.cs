@@ -20,6 +20,11 @@ public class DeathTrigger : MonoBehaviour
 
     private void Die()
     {
+        if (TryGetComponent(out Collider2D coli))
+        {
+            coli.enabled = false;
+        }
+
         _deathSrc.Play();
         OnPlayerDeath.Invoke();
     }
