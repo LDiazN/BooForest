@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1160,7 +1160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1139109711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1912,6 +1912,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4540619456327059469, guid: ba6f971f5e89ef049909a9c7daaa907f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193050035170314208, guid: ba6f971f5e89ef049909a9c7daaa907f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193050035170314208, guid: ba6f971f5e89ef049909a9c7daaa907f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193050035170314208, guid: ba6f971f5e89ef049909a9c7daaa907f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869419342160600423, guid: ba6f971f5e89ef049909a9c7daaa907f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6649707149860351040, guid: ba6f971f5e89ef049909a9c7daaa907f,
         type: 3}
       propertyPath: m_Name
@@ -1992,6 +2017,11 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1475943753}
+    - target: {fileID: 8399470910270376637, guid: ba6f971f5e89ef049909a9c7daaa907f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6f971f5e89ef049909a9c7daaa907f, type: 3}
 --- !u!4 &1469992284 stripped
