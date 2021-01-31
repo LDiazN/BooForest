@@ -38,6 +38,9 @@ public class NaviController : MonoBehaviour
     [SerializeField]
     private LayerMask _signalLayer = 0;
 
+    [SerializeField]
+    private bool _active = true;
+
 
     private PlayerController _playerController;
 
@@ -70,6 +73,9 @@ public class NaviController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!_active)
+            return;
+
         if (Input.GetKey(Call))
         {
             SignalPos();
@@ -83,6 +89,12 @@ public class NaviController : MonoBehaviour
             if (Mathf.Approximately(Vector2.SqrMagnitude(target - (Vector2)transform.position), 0))
                 _turboing = false;
         }
+    }
+
+    
+    public void DisableMovement()
+    {
+        _active = false;
     }
 
 
@@ -118,7 +130,6 @@ public class NaviController : MonoBehaviour
         //Debug.Log("distance to player " + clickToPlayer.sqrMagnitude);
         if (clickToPlayer.sqrMagnitude <= _lightRadius * _lightRadius)
         {
-            Debug.Log("hola");
             _playerController.GoTo(worldMousePos);
         }
     }
