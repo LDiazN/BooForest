@@ -19,6 +19,8 @@ public class Lamp : MonoBehaviour
 
     private bool _goingOff = false;
     private bool _off = false;
+    [SerializeField]
+    private bool _deactivable = true;
 
     private void Awake()
     {
@@ -58,6 +60,9 @@ public class Lamp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_deactivable)
+            return;
+
         if (_off)
             return;
 
@@ -70,6 +75,9 @@ public class Lamp : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!_deactivable)
+            return;
+
         if (collision.CompareTag("Player"))
         {
             PlayerStatus.Instance.inLight = false;

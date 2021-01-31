@@ -31,32 +31,34 @@ public class CameraFollower : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 playerPos = _player.transform.position;
-        Vector2 naviPos = _navi.transform.position;
-        Vector3 targetPos = Vector3.Lerp(playerPos, naviPos, 0.5f);
+        //Vector2 playerPos = _player.transform.position;
+        //Vector2 naviPos = _navi.transform.position;
+        //Vector3 targetPos = Vector3.Lerp(playerPos, naviPos, 0.5f);
+        //targetPos.z = transform.position.z;
+        //
+        //float vertDist = Mathf.Abs(naviPos.y - playerPos.y);
+        //float horDist = Mathf.Abs(naviPos.x - playerPos.x);
+        //float targetSize = 0f;
+        //
+        //if (vertDist > horDist)
+        //{
+        //    //Debug.Log("Vert");
+        //    targetSize = vertDist / 2f;
+        //    targetSize += _padding;
+        //}
+        //else
+        //{
+        //    //Debug.Log("Hor");
+        //    targetSize = horDist * ((float)Screen.height / (float)Screen.width) * 0.5f;
+        //    targetSize += _padding;
+        //}
+        //
+        //
+        ////Debug.Log($"HORIZONTAL: {horDist} VERTICAL: {vertDist}");
+        ////Debug.Log($"TARGET SIZE: {targetSize}");
+        //_cam.orthographicSize = Mathf.SmoothDamp(_cam.orthographicSize, targetSize, ref _sizeVel, 0.2f);
+        Vector3 targetPos = _player.transform.position;
         targetPos.z = transform.position.z;
-
-        float vertDist = Mathf.Abs(naviPos.y - playerPos.y);
-        float horDist = Mathf.Abs(naviPos.x - playerPos.x);
-        float targetSize = 0f;
-
-        if (vertDist > horDist)
-        {
-            //Debug.Log("Vert");
-            targetSize = vertDist / 2f;
-            targetSize += _padding;
-        }
-        else
-        {
-            //Debug.Log("Hor");
-            targetSize = horDist * ((float)Screen.height / (float)Screen.width) * 0.5f;
-            targetSize += _padding;
-        }
-        
-
-        //Debug.Log($"HORIZONTAL: {horDist} VERTICAL: {vertDist}");
-        //Debug.Log($"TARGET SIZE: {targetSize}");
-        _cam.orthographicSize = Mathf.SmoothDamp(_cam.orthographicSize, targetSize, ref _sizeVel, 0.2f);
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _followVel, 0.2f);
     }
 }

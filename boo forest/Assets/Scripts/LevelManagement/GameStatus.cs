@@ -40,7 +40,8 @@ public class GameStatus : MonoBehaviour
 
     private void Start()
     {
-        PlayerStatus.Instance.death.OnPlayerDeath.AddListener(GameOver);    
+        PlayerStatus.Instance.death.OnPlayerDeath.AddListener(GameOver);
+        StartCoroutine(StartGame());
     }
 
     private IEnumerator StartGame()
