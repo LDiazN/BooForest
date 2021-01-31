@@ -128,7 +128,7 @@ public class StallkerIA : MonoBehaviour
 
     }
 
-    private void Idle()
+    public void Idle()
     {
         _currentGizmoState = GizmoState.none;
         _movement.Stop();
